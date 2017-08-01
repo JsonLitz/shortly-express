@@ -16,7 +16,7 @@ var port = 4568;
 var xbeforeEach = function() {};
 /************************************************************/
 
-
+///////////////// TEST ONE ////////////////////////////
 describe('', function() {
   var db;
   var server;
@@ -61,6 +61,7 @@ describe('', function() {
     afterEach(function() { server.close(); });
   });
 
+///////////////// TEST TWO ////////////////////////////
   describe('Database Schema:', function() {
     it('contains a users table', function(done) {
       var queryString = 'SELECT * FROM users';
@@ -123,7 +124,7 @@ describe('', function() {
     });
   });
 
-  xdescribe('Account Creation:', function() {
+  describe('Account Creation:', function() {
 
     it('signup creates a new user record', function(done) {
       var options = {
@@ -208,7 +209,7 @@ describe('', function() {
     });
   });
 
-  xdescribe('Account Login:', function() {
+  describe('Account Login:', function() {
 
     beforeEach(function(done) {
       var options = {
@@ -371,6 +372,7 @@ describe('', function() {
       });
     });
 
+    ///////////////// TEST THREE ////////////////////////////
     describe('Session Parser', function() {
       it('initializes a new session when there are no cookies on the request', function(done) {
         var requestWithoutCookies = httpMocks.createRequest();
@@ -624,6 +626,7 @@ describe('', function() {
       requestWithSession('http://127.0.0.1:4568/logout', done);
     });
 
+    ///////////////// TEST FOUR ////////////////////////////
     describe('Creating new links:', function(done) {
 
       it('Only shortens valid urls, returning a 404 - Not found for invalid urls', function(done) {
@@ -683,6 +686,7 @@ describe('', function() {
       });
     });
 
+    ///////////////// TEST FIVE ////////////////////////////
     describe('With previously saved urls:', function() {
 
       var link;
