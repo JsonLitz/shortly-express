@@ -98,21 +98,21 @@ app.post('/login', (req, res, next) => {
   var attempted = req.body.password;
   return models.Users.get({ username })
   .then(results => {
-    if (results) {
-      console.log(results);
-      if (models.Users.compare(attempted, results.password, results.salt)) {
-        console.log('redirect to root page');
+    if(results){
+      if(models.Users.compare(attempted, results.password, results.salt)){
         res.redirect('/');
-      } else {
+      }else {
         res.redirect('/login');
       }
+    }else {
+      res.redirect('/login');
     }
-    res.redirect('/login');
   })
   .error( (error) => {
     res.status(500).send(error);
   });
 })
+
 
 
 /************************************************************/
@@ -146,3 +146,17 @@ app.get('/:code', (req, res, next) => {
 });
 
 module.exports = app;
+
+
+  // return models.Users.get({ username })
+  // .then(results => {
+  //   if (results) {
+  //     if (models.Users.compare(attempted, results.password, results.salt)) {
+  //       res.redirect('/');
+  //     } else {
+  //       res.redirect('/login');
+  //     }
+  //   }
+  //   res.redirect('/login');
+  // })
+ 
