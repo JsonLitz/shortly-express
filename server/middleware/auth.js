@@ -2,7 +2,10 @@ const models = require('../models');
 const Promise = require('bluebird');
 
 module.exports.createSession = (req, res, next) => {
-  console.log('this is the ', req);
+  let session = models.Sessions.create();
+  req.session = session;
+  console.log(session);
+  next();
 };
 
 /************************************************************/

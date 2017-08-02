@@ -16,7 +16,7 @@ var port = 4568;
 var xbeforeEach = function() {};
 /************************************************************/
 
-///////////////// TEST ONE ////////////////////////////
+
 describe('', function() {
   var db;
   var server;
@@ -61,7 +61,6 @@ describe('', function() {
     afterEach(function() { server.close(); });
   });
 
-///////////////// TEST TWO ////////////////////////////
   describe('Database Schema:', function() {
     it('contains a users table', function(done) {
       var queryString = 'SELECT * FROM users';
@@ -278,7 +277,8 @@ describe('', function() {
     });
   });
 
-  xdescribe('Sessions Schema:', function() {
+////////////////////////////////////////////////////////////////////////////////////////
+  describe('Sessions Schema:', function() {
     it('contains a sessions table', function(done) {
       var queryString = 'SELECT * FROM sessions';
       db.query(queryString, function(err, results) {
@@ -326,7 +326,7 @@ describe('', function() {
     });
   });
 
-  xdescribe('Express Middleware', function() {
+ describe('Express Middleware', function() {
     var cookieParser = require('../server/middleware/cookieParser.js');
     var createSession = require('../server/middleware/auth.js').createSession;
 
@@ -372,7 +372,7 @@ describe('', function() {
       });
     });
 
-    ///////////////// TEST THREE ////////////////////////////
+
     describe('Session Parser', function() {
       it('initializes a new session when there are no cookies on the request', function(done) {
         var requestWithoutCookies = httpMocks.createRequest();

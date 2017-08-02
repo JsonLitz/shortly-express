@@ -47,7 +47,7 @@ app.post('/links', (req, res, next) => {
 
   return models.Links.get({ url })
     .then(link => {
-      if (link) {
+      if (link) { 
         throw link;
       }
       return models.Links.getUrlTitle(url);
@@ -78,16 +78,16 @@ app.post('/links', (req, res, next) => {
 /************************************************************/
 app.get('/signup', (req, res) => {
   res.render('signup');
-})
+});
 app.post('/signup', (req, res, next) => {
-   models.Users.create(req.body)
+  models.Users.create(req.body)
    .then(results => {
      res.redirect('/');
    })
    .catch(results => {
      res.redirect('/signup');
-   })
-})
+   });
+});
 
 app.get('/login', (req, res) => {
   res.render('login');
@@ -98,20 +98,20 @@ app.post('/login', (req, res, next) => {
   var attempted = req.body.password;
   return models.Users.get({ username })
   .then(results => {
-    if(results){
-      if(models.Users.compare(attempted, results.password, results.salt)){
+    if (results) {
+      if (models.Users.compare(attempted, results.password, results.salt)) {
         res.redirect('/');
-      }else {
+      } else {
         res.redirect('/login');
       }
-    }else {
+    } else {
       res.redirect('/login');
     }
   })
   .error( (error) => {
     res.status(500).send(error);
   });
-})
+});
 
 
 
